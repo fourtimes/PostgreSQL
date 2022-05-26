@@ -38,7 +38,6 @@ VALUES (value1, value2, value3,...valueN);
 
 # select the values in specified tables
 SELECT * FROM table_name;
-
 SELECT column1, column2, columnN FROM table_name;
 
 # WHERE Condition
