@@ -30,6 +30,7 @@ CREATE TABLE table_name(
 DROP TABLE table_name;
 ```
 ### INSERT, UPDATE, WHERE
+---
 ```bash
 # INSERT the values
 INSERT INTO TABLE_NAME (column1, column2, column3,...columnN)
