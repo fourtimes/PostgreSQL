@@ -1,4 +1,4 @@
-### POSTGRESQL
+### PostgreSQL DATABASE, TABLE Creation
 ---
 ```bash
 # CREATE DATABASE syntax
