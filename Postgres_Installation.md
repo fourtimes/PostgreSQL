@@ -31,3 +31,10 @@ SELECT version();
 CREATE USER (your_username) WITH ENCRYPTED PASSWORD ('your_password');
 GRANT ALL PRIVILEGES ON DATABASE (your_dbname) TO (your_username);
 ```
+**Remote Backup**
+```bash
+sudo pg_dump -U (username) -h (host(or)ip a) -p 5432 (database_name) > (foldername)
+ex:
+----
+sudo pg_dump -U ashli -h localhost -p 5432 demo > /home/dodo/Desktop/demoo.sql
+```
