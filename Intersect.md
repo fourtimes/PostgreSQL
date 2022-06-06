@@ -9,7 +9,7 @@
 |5.|`EXCEPT`|find the rows that are present in first query but not second query. remove duplicates.|
 |6.|`EXCEPT ALL`|find the rows that are present in first query but not second query.|
 
-### Example
+### Examples
 
  ```bash
 # union all
@@ -25,4 +25,15 @@ INTERSECT
 SELECT col_name
 FROM B
 ORDER BY sort_expression;
+```
+```bash
+# except
+SELECT supplier_id, supplier_name
+FROM suppliers
+WHERE supplier_id >= 59
+EXCEPT
+SELECT company_id, company_name
+FROM companies
+WHERE state = 'California'
+ORDER BY 2;
 ```
