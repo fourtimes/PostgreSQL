@@ -23,7 +23,7 @@
 **6. Values not equal to**
 ```bash
 <> and !=
-```PostgreSQL_basic_commands
+```
 **7. Values between two other values**
 ```bash
 BETWEEN
