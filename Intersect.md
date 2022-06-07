@@ -8,6 +8,10 @@
 |4.|`INTERSECT ALL`|find the rows common in the results of two queries.|
 |5.|`EXCEPT`|find the rows that are present in first query but not second query. remove duplicates.|
 |6.|`EXCEPT ALL`|find the rows that are present in first query but not second query.|
+|7.|`DISTRINCT`|DISTINCT clause to remove duplicate rows from a result set returned by a query.|
+|8.|`GREATEST`|Returns the greatest value from the list of expressions|
+9.|`LEAST`|Returns the least from the list of expressions.|
+
 
 ### Examples
 
@@ -36,4 +40,12 @@ SELECT company_id, company_name
 FROM companies
 WHERE state = 'California'
 ORDER BY 2;
+```
+```bash
+# greatest
+SELECT GREATEST(1, 10, 64); #64
+```
+```bash
+# least
+SELECT LEAST(1,2,3); #1
 ```
