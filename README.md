@@ -30,6 +30,12 @@ sudo systemctl start postgresql.service
 ```bash
 sudo systemctl status postgresql.service
 ```
+**Database Details:**
+|db_name|Table_name|
+|-------|----------|
+|demo|users|
+|demo|photos|
+|demo|comments|
 ### Login into the postgreSQL server
 ```bash
 sudo -u postgres psql
@@ -38,8 +44,4 @@ sudo -u postgres psql
 ```bash
 SELECT version();
 ```
-|db_name|Table_name|
-|-------|----------|
-|demo|users|
-|demo|photos|
-|demo|comments|
+
