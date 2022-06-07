@@ -1,14 +1,16 @@
 ## Aggregates Functions
+Like most other relational database products, PostgreSQL supports aggregate functions. An aggregate function computes a **single result from multiple input rows**. PostgreSQL provides all standard SQL’s aggregate functions as follows:
 
+---
 **1. Returns the number of values in a group of values**
 ```bash
 COUNT()
 ```
-**2. Finds the sum of a group of numbers**
+**2. Returns the sum of a group of numbers**
 ```bash
 SUM()
 ```
-**3. Finds the average of a group of numbers**
+**3. Returns the average of a group of numbers**
 ```bash
 AVG()
 ```
@@ -23,4 +25,4 @@ MAX()
 ### Examples:
 
 1. SELECT `MAX(id)` FROM comments;
-2. SELECT user_id, `MAX(id)` FROM comments GROUP BY user_id;
+2. SELECT user_id, `MIN(id)` FROM comments GROUP BY user_id;
