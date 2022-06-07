@@ -8,17 +8,21 @@
 
 CONCAT()
 ```
-**2. Gives a lower case**
+**2. Returns a lower case**
 ```bash
 LOWER()
 ```
-**3. Gives a upper case**
+**3. Returns a upper case**
 ```bash
 UPPER()
 ```
-**4. Gives a number of characters in a string**
+**4. Returns a number of characters in a string**
 ```bash
 LENGTH()
+```
+**5. The GREATEST function returns the greatest value in a list of expressions.**
+```bash
+GREATEST( expr_1, expr_2, ... expr_n )
 ```
 ---
 
