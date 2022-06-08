@@ -181,3 +181,34 @@ SELECT username FROM users ORDER BY username DESC;
 ```
 ![image](https://user-images.githubusercontent.com/91359308/172542358-5ed0df24-8f92-4044-a472-87758384ee8e.png)
 
+**GROUP BY Clause**
+------------------
+- Groups row by a unique set of values.
+```bash
+ SELECT COUNT(*), user_id FROM photos GROUP BY user_id;
+ SELECT count(*), username FROM users WHERE username='ashli' GROUP BY username;
+ ```
+![image](https://user-images.githubusercontent.com/91359308/172544576-7fc3fede-da30-44cd-b6d2-dba515abda68.png)
+
+**DISTINCT clause**
+----------------
+- The PostgreSQL DISTINCT clause, which is used to delete the matching rows or data from a table and get only the unique records.
+
+```bash
+SELECT DISTINCT username FROM users;
+SELECT DISTINCT photo_name AS photo, user_id FROM photos ORDER BY photo_name, user_id;
+
+```
+
+![image](https://user-images.githubusercontent.com/91359308/172545974-77811237-054a-49b4-962c-152f746af372.png)
+
+**Having clause**
+----------------
+- The HAVING clause allows us to filter groups of rows as per the defined condition.
+- The HAVING clause is useful to **groups of rows.**
+
+```bash
+SELECT count(*), username FROM users GROUP BY username HAVING count(*) < 2;
+```
+![image](https://user-images.githubusercontent.com/91359308/172555964-3bb72b9d-b10d-4007-a00d-6c3e75cd7843.png)
+
