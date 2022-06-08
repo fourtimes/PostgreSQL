@@ -125,6 +125,7 @@ SELECT username FROM users WHERE id=6;
 ```
 
 **Arithmetic operators**
+------------------------
 
 ```bash
 SELECT content, user_id + photo_id AS sum_content FROM comments;
@@ -149,4 +150,34 @@ SELECT content, user_id * photo_id AS mul_content FROM comments;
       SELECT MAX(id),COUNT(*) FROM photos;
 ```
 ![image](https://user-images.githubusercontent.com/91359308/172539682-c81c2cc6-ef2f-4112-8bef-5753c8f2707b.png)
+
+**Comparison Operators**
+------------------------
+
+| symbol    | Details of the comparison        |
+| --------- | -------------------------------- |
+| `BETWEEN` | Values between two other values  |
+| `=`       | Equal Values                     |
+| `>`       | Greater than Values              |
+| `<`       | Less than Values                 |
+| `<=`      | Less than or equal to Values     |
+| `>=`      | Greater than or equal to Values  |
+| `NOT IN`  | The value not present in a list? |
+| `IN`      | Present in the list              |
+
+```bash
+SELECT id,username FROM users WHERE id BETWEEN 3 and 6;
+SELECT id,username FROM users WHERE id > 3;
+SELECT id,username FROM users WHERE id < 3;
+```
+![image](https://user-images.githubusercontent.com/91359308/172541583-a18c9247-49d9-4a19-a19f-b2d60a9f86cf.png)
+
+**ORDER BY Clause**
+-------------------
+-  ORDER BY clause is used to sort the data in ascending(**ASC**) order descending(**DESC**) order, based on one or more columns.
+```bash
+SELECT username FROM users ORDER BY username ASC;
+SELECT username FROM users ORDER BY username DESC;
+```
+![image](https://user-images.githubusercontent.com/91359308/172542358-5ed0df24-8f92-4044-a472-87758384ee8e.png)
 
