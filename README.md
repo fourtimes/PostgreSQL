@@ -229,6 +229,7 @@ SELECT * FROM users OFFSET 3;
 ![image](https://user-images.githubusercontent.com/91359308/172558687-39beb0bd-d601-45db-8ca6-98b4809e70fa.png)
 
 **JOIN**
+--------
 
 - A PostgreSQL Join statement is used to combine data (or) rows from one(self-join) or more tables based on a common field between them. 
 - These common fields are generally the Primary key of the first table and Foreign key of other tables.
@@ -265,3 +266,55 @@ SELECT * FROM users RIGHT JOIN photos ON photos.user_id = users.id LIMIT 2;
  SELECT * FROM users FULL JOIN photos ON photos.user_id = users.id LIMIT 2;
  ```
 ![image](https://user-images.githubusercontent.com/91359308/172562366-02b92db9-9ecc-43f4-beca-d7e81355166d.png)
+
+**UNION**
+---------
+|S.No.|Symbol|Details|
+|-----|------|----------|
+|1.|`UNION`|Join together the results of 2 queries and remove duplicate rows.|
+|2.|`UNION ALL`|Join together the results of 2 queries.|
+|3.|`INTERSECT`|find the rows common in the results of two queries. remove duplicates.|
+|4.|`INTERSECT ALL`|find the rows common in the results of two queries.|
+|5.|`EXCEPT`|find the rows that are present in first query but not second query. remove duplicates.|
+|6.|`EXCEPT ALL`|find the rows that are present in first query but not second query.|
+|7.|`DISTRINCT`|DISTINCT clause to remove duplicate rows from a result set returned by a query.|
+|8.|`GREATEST`|Returns the greatest value from the list of expressions|
+9.|`LEAST`|Returns the least from the list of expressions.|
+- Join together the results of 2 queries and remove duplicate rows.
+
+```bash
+# UNION
+SELECT id FROM users 
+UNION 
+SELECT user_id FROM photos;
+```
+![image](https://user-images.githubusercontent.com/91359308/172564116-f4eb5a8b-8d8c-450e-bf18-36346e45c80f.png)
+
+```bash
+# INTERSECT
+SELECT id FROM users 
+INTERSECT 
+SELECT user_id FROM photos;
+```
+![image](https://user-images.githubusercontent.com/91359308/172565028-d09a7e6b-99a5-4b94-b434-11b487c73b11.png)
+
+```bash
+# EXCEPT
+SELECT id FROM users 
+EXCEPT 
+SELECT user_id FROM photos;
+```
+![image](https://user-images.githubusercontent.com/91359308/172565292-07c7fb96-a9bc-477b-b400-8149a9e72d33.png)
+
+```bash
+# Greatest()
+SELECT GREATEST(1,202,3);
+```
+```bash
+# Least()
+SELECT LEAST(1,202,3);
+```
+
+![image](https://user-images.githubusercontent.com/91359308/172566440-60e81745-075e-4b5c-887d-03dd421ca175.png)
+
+
