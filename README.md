@@ -146,5 +146,7 @@ SELECT content, user_id * photo_id AS mul_content FROM comments;
       SELECT COUNT(*) FROM users;
       SELECT MAX(id),COUNT(*) FROM photos;
 ```
+![image](https://user-images.githubusercontent.com/91359308/172539682-c81c2cc6-ef2f-4112-8bef-5753c8f2707b.png)
+
 ![image](https://user-images.githubusercontent.com/91359308/172539408-57204063-e5bb-4049-871c-1dfadcedb2eb.png)
 
