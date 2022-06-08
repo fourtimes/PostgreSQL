@@ -39,37 +39,50 @@ sudo systemctl status postgresql.service
 ```
 
 **Database Details:**
+---------------------
 |db_name|Table_name|
 |-------|----------|
 |demo|users|
 |demo|photos|
 |demo|comments|
 
-### Login into the postgreSQL server
+**Login into the postgreSQL server**
+-----------------------------------
 
 ```bash
 sudo -u postgres psql
 ```
 
 **Check the version of psql**
+---------------------------
 
 ```bash
 SELECT version();
 ```
 
 **Create the database**
+-------------------------
 
 ```bash
 CREATE DATABASE demo
 ```
+**DROP DATABASE**
+-------------
+- If you want to delete the database. Use this command,
+```bash
+# DROP TABLE
+DROP DATABASE demo;
+```
 
 **Enter into the database**
+---------------------------
 
 ```bash
 \c demo
 ```
 
 **Create the table inside the database**
+------------------------------------------
 
 ```bash
 CREATE TABLE users (
@@ -94,8 +107,15 @@ CREATE TABLE comments (
    photo_id INTEGER REFERENCES photos(id)
 );
 ```
-
+**DROP TABLE**
+-------------
+If you want to delete the table. use this below command,
+```bash
+# DROP TABLE
+DROP TABLE users;
+```
 **Insert the values into 3 tables**
+-----------------------------------
 
 ```bash
 INSERT INTO users (username) VALUES ('joe'),('vicky'),('mervin'),('joseph'),('johnson'),('ashli');
@@ -110,6 +130,7 @@ INSERT INTO comments (content,user_id,photo_id) VALUES ('looks so beautiful',2,2
 ```
 
 **To view the detailed content in table using SELECT statement**
+-------------------------------------------------------------------
 
 ```bash
 SELECT * FROM users;
@@ -118,6 +139,7 @@ SELECT * FROM photos;
 ```
 
 **To view the specified column in table using SELECT statement with WHERE Condidtion**
+---------------------------------------------------------------------------------------
 
 ```bash
 SELECT content,user_id FROM comments;
@@ -317,4 +339,22 @@ SELECT LEAST(1,202,3);
 
 ![image](https://user-images.githubusercontent.com/91359308/172566440-60e81745-075e-4b5c-887d-03dd421ca175.png)
 
+**ALTER TABLE**
+-----------------
+```bash
+# add a new column
+ALTER TABLE users ADD price INT;
+```
+![image](https://user-images.githubusercontent.com/91359308/172570322-57f938b3-c040-443e-a85c-44c63643c61b.png)
+
+```bash
+#Change the DATA TYPE of a column
+ALTER TABLE users ALTER COLUMN price TYPE varchar(34);
+```
+
+```bash
+# drop the added column
+ALTER TABLE users DROP COLUMN price;
+```
+![image](https://user-images.githubusercontent.com/91359308/172571220-dee1584c-e883-449e-a218-e29b6065f3cd.png)
 
