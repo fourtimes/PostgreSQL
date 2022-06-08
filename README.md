@@ -131,3 +131,19 @@ SELECT content, user_id + photo_id AS sum_content FROM comments;
 SELECT content, user_id * photo_id AS mul_content FROM comments;
 ```
 ![image](https://user-images.githubusercontent.com/91359308/172534697-f69f9301-1cf4-4f05-aad6-64476e4cf496.png)
+
+**Aggregate functions**
+|symbol|Details|
+|------|-----|
+|`COUNT()`|Returns the number of values in a group|
+|`SUM()`|Returns the sum of values|
+|`MAX()`|Returns the maximum number of values|
+|`MIN()`|Returns the minimum number of values|
+|`AVG()`|Returns the average value of a group|
+
+```bash
+      SELECT COUNT(*) FROM users;
+      SELECT MAX(id),COUNT(*) FROM photos;
+```
+![image](https://user-images.githubusercontent.com/91359308/172539408-57204063-e5bb-4049-871c-1dfadcedb2eb.png)
+
