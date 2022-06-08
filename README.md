@@ -133,6 +133,7 @@ SELECT content, user_id * photo_id AS mul_content FROM comments;
 ![image](https://user-images.githubusercontent.com/91359308/172534697-f69f9301-1cf4-4f05-aad6-64476e4cf496.png)
 
 **Aggregate functions**
+-----------------------
 |symbol|Details|
 |------|-----|
 |`COUNT()`|Returns the number of values in a group|
