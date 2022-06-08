@@ -212,3 +212,56 @@ SELECT count(*), username FROM users GROUP BY username HAVING count(*) < 2;
 ```
 ![image](https://user-images.githubusercontent.com/91359308/172555964-3bb72b9d-b10d-4007-a00d-6c3e75cd7843.png)
 
+**LIMIT**
+---------
+- Will show the first two rows. Other rows will be skipped.
+```bash
+SELECT * FROM users LIMIT 2;
+```
+![image](https://user-images.githubusercontent.com/91359308/172557839-00b2592a-0a4b-4a26-8b09-87030534a7a7.png)
+
+**OFFSET Clause**
+------------------
+- OFFSET is used to skip the number of records from the results.
+```bash
+SELECT * FROM users OFFSET 3;
+```
+![image](https://user-images.githubusercontent.com/91359308/172558687-39beb0bd-d601-45db-8ca6-98b4809e70fa.png)
+
+**JOIN**
+
+- A PostgreSQL Join statement is used to combine data (or) rows from one(self-join) or more tables based on a common field between them. 
+- These common fields are generally the Primary key of the first table and Foreign key of other tables.
+- There are 4 basic types of joins supported by PostgreSQL, namely:
+
+   **1.Inner Join** 
+
+   **2. Left Join** 
+
+   **3. Right Join**
+
+   **4. Full Outer Join**
+
+```bash
+# INNER JOIN
+SELECT username,photo_name FROM users INNER JOIN photos ON photos.user_id = users.id;
+```
+![image](https://user-images.githubusercontent.com/91359308/172560971-816f38ec-6220-4f1b-9379-ceee1bbe9bce.png)
+
+```bash
+# LEFT JOIN
+SELECT username,photo_name FROM users LEFT JOIN photos ON photos.user_id = users.id LIMIT 2;
+```
+![image](https://user-images.githubusercontent.com/91359308/172561666-b702b4f1-3385-43e4-b345-a6e2d2b5c37f.png)
+
+```bash
+# RIGHT JOIN
+SELECT * FROM users RIGHT JOIN photos ON photos.user_id = users.id LIMIT 2;
+```
+![image](https://user-images.githubusercontent.com/91359308/172561942-81369279-6d0e-4980-a532-78fa4a286316.png)
+
+```bash
+# FULL OUTER JOIN
+ SELECT * FROM users FULL JOIN photos ON photos.user_id = users.id LIMIT 2;
+ ```
+![image](https://user-images.githubusercontent.com/91359308/172562366-02b92db9-9ecc-43f4-beca-d7e81355166d.png)
