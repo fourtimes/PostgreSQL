@@ -107,6 +107,13 @@ CREATE TABLE comments (
    photo_id INTEGER REFERENCES photos(id)
 );
 ```
+**Listing Tables**
+------------------
+```
+# view tables details
+\dt
+```
+
 **DROP TABLE**
 -------------
 If you want to delete the table. use this below command,
