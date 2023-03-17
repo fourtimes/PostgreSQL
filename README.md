@@ -206,7 +206,8 @@ SELECT content, user_id * photo_id AS mul_content FROM comments;
 SELECT id,username FROM users WHERE id BETWEEN 3 and 6;
 SELECT id,username FROM users WHERE id > 3;
 SELECT id,username FROM users WHERE id < 3;
- SELECT photo_name FROM photos WHERE user_id IN(2);
+SELECT photo_name FROM photos WHERE user_id IN(2);
+SELECT photo_name FROM photos where user_id NOT IN(2);
 ```
 ![image](https://user-images.githubusercontent.com/91359308/172541583-a18c9247-49d9-4a19-a19f-b2d60a9f86cf.png)
 
