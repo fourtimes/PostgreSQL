@@ -66,6 +66,14 @@ SELECT version();
 ```bash
 CREATE DATABASE demo
 ```
+
+**list the database**
+-------------------------
+
+```bash
+\l
+```
+
 **DROP DATABASE**
 -------------
 - If you want to delete the database. Use this command,
