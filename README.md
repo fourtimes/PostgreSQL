@@ -312,8 +312,8 @@ SELECT * FROM users RIGHT JOIN photos ON photos.user_id = users.id LIMIT 2;
 |-----|------|----------|
 |1.|`UNION`|Join together the results of 2 queries and remove duplicate rows.|
 |2.|`UNION ALL`|Join together the results of 2 queries.|
-|3.|`INTERSECT`|find the rows common in the results of two queries. remove duplicates.|
-|4.|`INTERSECT ALL`|find the rows common in the results of two queries.|
+|3.|`INTERSECT`|We need to find common values between two queries. remove duplicates values.|
+|4.|`INTERSECT ALL`|We need to find common values between two queries.|
 |5.|`EXCEPT`|find the rows that are present in first query but not second query. remove duplicates.|
 |6.|`EXCEPT ALL`|find the rows that are present in first query but not second query.|
 |7.|`DISTRINCT`|DISTINCT clause to remove duplicate rows from a result set returned by a query.|
