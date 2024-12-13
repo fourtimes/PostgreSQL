@@ -1,40 +1,66 @@
-# What is PostgreSQL
-- PostgreSQL is an advanced, enterprise-class, and open-source relational database system. PostgreSQL supports both SQL (relational) and JSON (non-relational) querying.
+## Installing, Configuring, and Managing PostgreSQL on Ubuntu 22.04
 
-- PostgreSQL is a highly stable database backed by more than 20 years of development by the open-source community.
-
-- PostgreSQL is used as a primary database for many web applications as well as mobile and analytics applications.
-### PostgreSQL Installation on ubuntu
-
-```bash
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-sudo systemctl start postgresql.service
-sudo systemctl status postgresql.service
+Installing PostgreSQL
+```cmd
+sudo apt update && sudo apt install postgresql postgresql-contrib
+sudo systemctl start postgresql && sudo systemctl enable postgresql && sudo systemctl status postgresql
+psql --version
 ```
-### Uninstall the postgres 
+Switch to the PostgreSQL User
+```cmd
+sudo -i -u postgres
+psql
 
-```bash
-sudo apt-get --purge remove postgresql postgresql-*
-sudo apt autoremove
+# Set the password for the postgres user 
+ALTER USER postgres PASSWORD 'new_password';
+
+\q
 ```
-### Login into the postgreSQL server
-```bash
+  ###  PostgreSQL Configuration Files
+```md
+# sudo nano /etc/postgresql/14/main/postgresql.conf
+
+listen_addresses = 'localhost'  # change to '*' for all interfaces
+port = 5432
+```
+ Client Authentication Configuration:
+```md
+# sudo nano /etc/postgresql/14/main/pg_hba.conf
+host    all             all             0.0.0.0/0               md5
+```
+Restart the psql service
+```cmd
+sudo systemctl restart postgresql
+```
+### Managing PostgreSQL
+```md
+# Login as a PostgreSQL user
 sudo -u postgres psql
+
+# List all databases:
+\l
+
+# List all users:
+\du
+
+# List specific db table
+\dt
+
+# Create a new database:
+CREATE DATABASE db_name;
+
+# Grant privileges to a user on a database
+GRANT ALL PRIVILEGES ON DATABASE db_name TO user_name;
+
+# Drop a database
+DROP DATABASE db_name;
 ```
-**Check the version of psql**
-```bash
-SELECT version();
-```
-**Create the new user:**
-```bash
-CREATE USER (your_username) WITH ENCRYPTED PASSWORD ('your_password');
-GRANT ALL PRIVILEGES ON DATABASE (your_dbname) TO (your_username);
-```
-**Backup the database using remote connection**
-```bash
-sudo pg_dump -U (username) -h (host(or)ip a) -p 5432 (database_name) > (foldername)
-ex:
-----
-sudo pg_dump -U ashli -h localhost -p 5432 demo > /home/dodo/Desktop/demoo.sql
+
+Backing Up and Restoring Databases
+```md
+# Backup a database using pg_dump
+sudo pg_dump db_name > db_backup.sql
+
+# Restore a database from a backup
+psql db_name < db_backup.sql
 ```
