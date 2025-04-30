@@ -8,6 +8,10 @@ On Master and Slave servers, PostgreSQL 16 must have be installed following the 
 ```md
 sudo apt update
 sudo apt install postgresql postgresql-contrib -y
+
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+sudo systemctl status postgresql
 ```
 ### Step1: Configurations on master server
 _Change the below configuration for replication process._
