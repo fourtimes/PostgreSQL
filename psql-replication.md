@@ -52,7 +52,7 @@ Now, remove the contents of main(data) directory on slave server.
 ```cmd
 sudo rm -rf /var/lib/postgresql/16/main/
 ```
-Now, use basebackup to take the base backup with the right ownership with postgres(or any user with right permissions).
+Now, use basebackup to take the base backup with the right ownership with postgres for slave node (or any user with right permissions).
 ```cmd
 sudo pg_basebackup -h  172.31.44.242 -D /var/lib/postgresql/16/main/ -U replicator -P -v -R -X stream -C -S slaveslot1
 ```
