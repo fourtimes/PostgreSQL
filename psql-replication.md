@@ -127,3 +127,5 @@ Your PostgreSQL replication setup is now working as expected.
 
 ![Image](https://github.com/user-attachments/assets/7a344c6d-b00c-4980-b433-243590cdf012)
 
+**Reference**
+-  https://medium.com/@pesengizem/set-up-highly-available-postgresql-replication-cluster-on-ubuntu-20-04-d3295eb2cd08
