@@ -1,12 +1,13 @@
-# PostgeSQL Replication for ubuntu 22
+
+# PostgeSQL Slavetion for ubuntu 22
 
 ## Environment
 - **OS**: Ubuntu 22.04
 - **PostgreSQL Version**: 14
 - **Nodes**:
   - Master: 10.106.0.1
-  - Replica-1: 10.106.0.2
-  - Replica-2: 10.106.0.3
+  - Slave-1: 10.106.0.2
+  - Slave-2: 10.106.0.3
   
 ## We need to install both nodes ( master and slave ) 
 ```cmd
@@ -44,19 +45,24 @@ take a backup for psql lib
 sudo cp -rf /var/lib/postgresql/14/main/ /var/lib/postgresql/14/main.bk
 ```
 
-##  Configure the Replica Node - 1:
+##  Configure the Slave Node - 1:
 ```bash
+# stop the psql service
 sudo systemctl stop postgresql
 
+# remove the psql library
 sudo rm -rv /var/lib/postgresql/14/main/
 
-sudo pg_basebackup -h (10.106.0.1) -U repl_user -X stream -C -S replica_1 -v -R -W -D /var/lib/postgresql/14/main/
+# backup the psql library from master node
+sudo pg_basebackup -h 10.106.0.1 -U repl_user -X stream -C -S replica_1 -v -R -W -D /var/lib/postgresql/14/main/
  
+# change the owner permission
 sudo chown postgres -R /var/lib/postgresql/14/main/
 
+# start the psql service
 sudo systemctl start postgresql
 ```
-## Test the PostgreSQL Replication
+## Test the PostgreSQL Slavetion
 #### Master node
 
 ```sql
@@ -86,28 +92,32 @@ SELECT * FROM products;
 INSERT INTO products(product_name) VALUES ('RED TSHIRT');   -- ERROR:  cannot execute INSERT in a read-only transaction
 ```
 
-# Adding and Configure another Replica:
+# Adding and Configure another Slave:
 
-<!-- Add another replica configuration to the master node.  -->
+<!-- Add another Slave configuration to the master node.  -->
 
 1. sudo vim `/etc/postgresql/14/main/pg_hba.conf`
 ```conf
 host    replication     repl_user       10.106.0.3/32           md5
 ```
-2. This steps should be followd in replica-node-2.
+2. This steps should be followd in Slave-node-2.
 ```bash
+# stop the psql service
 sudo systemctl stop postgresql
 
+# remove the psql library
 sudo rm -rv /var/lib/postgresql/14/main/
 
-sudo pg_basebackup -h 10.106.0.1 -U repl_user -X stream -C -S replica_2 -v -R -W -D /var/lib/postgresql/14/main/  
-                # The slot name (replica_2) must be changed when backing up a new replica node.
+# backup the psql library from master node
+sudo pg_basebackup -h 10.106.0.1 -U repl_user -X stream -C -S replica_1 -v -R -W -D /var/lib/postgresql/14/main/
+                                    # The slot name (replica_2) must be changed when backing up a new Slave node.
 
+# change the owner permission
 sudo chown postgres -R /var/lib/postgresql/14/main/
 
+# start the psql service
 sudo systemctl start postgresql
 ```
-
 
 # step-by-step failover process to switch PostgreSQL roles between Master (Primary) → Slave (Standby) and Slave → Master in Ubuntu 22.04.
 
@@ -125,7 +135,7 @@ sudo -u postgres psql -c "SELECT pg_is_in_recovery();"
 ### On Master (Primary):
 ```bash
 
-sudo -u postgres psql -c "SELECT client_addr, state, sync_state FROM pg_stat_replication;"
+sudo -u postgres psql -c "SELECT client_addr, state, sync_state FROM pg_stat_Slavetion;"
 ```
 This shows connected Slaves.
 
@@ -161,7 +171,7 @@ sudo -u postgres rm -rf /var/lib/postgresql/14/main/*
 sudo -u postgres pg_basebackup -h 10.106.0.2 -D /var/lib/postgresql/14/main -U repl_user -P -v -R -X stream -C -S replica_1
 
 ```
-4. Configure replication settings
+4. Configure Slavetion settings
 Edit `postgresql.auto.conf` (PostgreSQL 12+):
 ```bash
 sudo -u postgres vim /var/lib/postgresql/14/main/postgresql.auto.conf
@@ -175,7 +185,7 @@ primary_slot_name = 'replica_1'
 ```bash
 sudo systemctl start postgresql
 ```
-6. Verify replication
+6. Verify Slavetion
 ```bash
 sudo -u postgres psql -c "SELECT status, sender_host FROM pg_stat_wal_receiver;"
 ```
@@ -183,7 +193,7 @@ sudo -u postgres psql -c "SELECT status, sender_host FROM pg_stat_wal_receiver;"
 ### On New Master:
 ```bash
 sudo -u postgres psql -c "SELECT pg_is_in_recovery();"  # Should return `f` (false)
-sudo -u postgres psql -c "SELECT * FROM pg_stat_replication;"  # Should show the old Master as a Slave
+sudo -u postgres psql -c "SELECT * FROM pg_stat_Slavetion;"  # Should show the old Master as a Slave
 ```
 ### On New Slave (Old Master):
 ```bash
@@ -192,7 +202,7 @@ sudo -u postgres psql -c "SELECT status FROM pg_stat_wal_receiver;"  # Should sh
 ```
 
 #### Troubleshooting
-Replication not working? Check logs:
+Slavetion not working? Check logs:
 ```bash
 sudo tail -n 50 /var/log/postgresql/postgresql-14-main.log
 ```
