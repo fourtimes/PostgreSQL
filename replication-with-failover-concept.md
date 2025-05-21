@@ -33,7 +33,7 @@ wal_level = logical
 wal_log_hints = on
 ```
 
-sudo nano /etc/postgresql/14/main/pg_hba.conf
+sudo vim /etc/postgresql/14/main/pg_hba.conf
 ```conf
 host    replication     repl_user       10.106.0.2/32           md5
 ```
@@ -46,7 +46,7 @@ sudo cp -rf /var/lib/postgresql/14/main/ /var/lib/postgresql/14/main.bk
 ```
 
 ##  Configure the Slave Node - 1:
-```bash
+```md
 # stop the psql service
 sudo systemctl stop postgresql
 
@@ -101,7 +101,7 @@ INSERT INTO products(product_name) VALUES ('RED TSHIRT');   -- ERROR:  cannot ex
 host    replication     repl_user       10.106.0.3/32           md5
 ```
 2. This steps should be followd in Slave-node-2.
-```bash
+```md
 # stop the psql service
 sudo systemctl stop postgresql
 
@@ -231,3 +231,5 @@ SELECT * FROM products;
 
 INSERT INTO products(product_name) VALUES ('RED TSHIRT');   -- ERROR:  cannot execute INSERT in a read-only transaction
 ```
+
+
