@@ -1,5 +1,5 @@
 
-# PostgeSQL Slavetion for ubuntu 22
+# PostgeSQL Replication for ubuntu 22
 
 ## Environment
 - **OS**: Ubuntu 22.04
@@ -62,7 +62,7 @@ sudo chown postgres -R /var/lib/postgresql/14/main/
 # start the psql service
 sudo systemctl start postgresql
 ```
-## Test the PostgreSQL Slavetion
+## Test the PostgreSQL Replication
 #### Master node
 
 ```sql
@@ -135,7 +135,7 @@ sudo -u postgres psql -c "SELECT pg_is_in_recovery();"
 ### On Master (Primary):
 ```bash
 
-sudo -u postgres psql -c "SELECT client_addr, state, sync_state FROM pg_stat_Slavetion;"
+sudo -u postgres psql -c "SELECT client_addr, state, sync_state FROM pg_stat_Replication;"
 ```
 This shows connected Slaves.
 
@@ -171,7 +171,7 @@ sudo -u postgres rm -rf /var/lib/postgresql/14/main/*
 sudo -u postgres pg_basebackup -h 10.106.0.2 -D /var/lib/postgresql/14/main -U repl_user -P -v -R -X stream -C -S replica_1
 
 ```
-4. Configure Slavetion settings
+4. Configure Replication settings
 Edit `postgresql.auto.conf` (PostgreSQL 12+):
 ```bash
 sudo -u postgres vim /var/lib/postgresql/14/main/postgresql.auto.conf
@@ -185,7 +185,7 @@ primary_slot_name = 'replica_1'
 ```bash
 sudo systemctl start postgresql
 ```
-6. Verify Slavetion
+6. Verify Replication
 ```bash
 sudo -u postgres psql -c "SELECT status, sender_host FROM pg_stat_wal_receiver;"
 ```
@@ -193,7 +193,7 @@ sudo -u postgres psql -c "SELECT status, sender_host FROM pg_stat_wal_receiver;"
 ### On New Master:
 ```bash
 sudo -u postgres psql -c "SELECT pg_is_in_recovery();"  # Should return `f` (false)
-sudo -u postgres psql -c "SELECT * FROM pg_stat_Slavetion;"  # Should show the old Master as a Slave
+sudo -u postgres psql -c "SELECT * FROM pg_stat_Replication;"  # Should show the old Master as a Slave
 ```
 ### On New Slave (Old Master):
 ```bash
@@ -202,7 +202,7 @@ sudo -u postgres psql -c "SELECT status FROM pg_stat_wal_receiver;"  # Should sh
 ```
 
 #### Troubleshooting
-Slavetion not working? Check logs:
+Replication not working? Check logs:
 ```bash
 sudo tail -n 50 /var/log/postgresql/postgresql-14-main.log
 ```
